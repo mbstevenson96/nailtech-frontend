@@ -2,6 +2,7 @@ import React from 'react';
 import { Box, Image, Text, Button, Grid } from '@chakra-ui/react';
 
 const ProductCard = ({ product, onAddToCart }) => {
+  console.log(product)
   return (
     <Box borderWidth="1px" borderRadius="lg" overflow="hidden" p={4}>
       <Image

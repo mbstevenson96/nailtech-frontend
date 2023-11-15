@@ -14,27 +14,33 @@ import {
   NumberIncrementStepper,
   NumberDecrementStepper,
 } from '@chakra-ui/react';
+import { BsTrash3Fill } from 'react-icons/bs';
+import Checkout from '../checkout/Checkout';
 
-function ShoppingCart() {
-  const [cartItems, setCartItems] = useState([
-    {
-      id: 1,
-      name: 'Product 1',
-      image: 'https://via.placeholder.com/150',
-      price: 29.99,
-      quantity: 1,
-    },
-  ]);
-
-  const getTotalPrice = () => {
-    return cartItems.reduce(
-      (total, item) => total + item.price * item.quantity,
-      0,
-    );
+function ShoppingCart({cart, setCart}) { // consider using callBack
+  const [showCheckout, setShowCheckout] = useState(false);
+  const toggleCheckoutModal = () => setShowCheckout(!showCheckout);
+  const handleCheckout = e => {
+    e.preventDefault();
+    toggleCheckoutModal();
   };
 
+  const closeCheckout = () => {
+    setShowCheckout(false)
+  }
+  console.log(cart)
+
+const getTotalPrice = () => {
+  return cart.reduce((total, item) => {
+    const itemPrice = parseFloat(item.price);
+    const itemQuantity = parseInt(item.quantity); 
+
+    return total + itemPrice * itemQuantity;
+  }, 0);
+};
+
   const handleQuantityChange = (itemId, value) => {
-    setCartItems(prevItems =>
+    setCart(prevItems =>
       prevItems.map(item =>
         item.id === itemId ? { ...item, quantity: parseInt(value) } : item,
       ),
@@ -42,19 +48,19 @@ function ShoppingCart() {
   };
 
   const handleRemoveItem = itemId => {
-    setCartItems(prevItems => prevItems.filter(item => item.id !== itemId));
+    setCart(prevItems => prevItems.filter(item => item.id !== itemId));
   };
 
   return (
     <Box p={4}>
       <VStack align="flex-start" spacing={4}>
-        {cartItems.map(item => (
+        {cart.map(item => (
           <Box key={item.id} w="100%">
             <HStack justify="space-between" align="center">
               <Image
                 src={item.image}
                 alt={item.name}
-                boxSize="150px"
+                boxSize="100px"
                 objectFit="cover"
               />
               <Box flex="1" ml={4}>
@@ -83,16 +89,15 @@ function ShoppingCart() {
                       <NumberDecrementStepper />
                     </NumberInputStepper>
                   </NumberInput>
-                  <Button
-                    size="sm"
-                    colorScheme="red"
-                    onClick={() => handleRemoveItem(item.id)}
-                  >
-                    Remove
-                  </Button>
+                    <BsTrash3Fill
+                      size={'50'}
+                      color={'red'}
+                      onClick={() => handleRemoveItem(item.id)}
+                    />
                 </HStack>
               </Box>
             </HStack>
+
             <Divider mt={3} />
           </Box>
         ))}
@@ -100,13 +105,20 @@ function ShoppingCart() {
           <Text fontSize="lg" fontWeight="bold">
             Total: ${getTotalPrice().toFixed(2)}
           </Text>
-          <Button colorScheme="teal" mt={4}>
+          <Button
+            colorScheme="teal"
+            mt={4}
+            onClick={() => setShowCheckout(true)}
+          >
             Checkout
           </Button>
         </Box>
       </VStack>
+      {showCheckout && (
+        <Checkout showCheckout={showCheckout} closeCheckout={closeCheckout} />
+      )}
     </Box>
   );
-};
+}
 
 export default ShoppingCart;

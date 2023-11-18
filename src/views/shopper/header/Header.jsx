@@ -22,6 +22,7 @@ import {
   DrawerBody,
   DrawerCloseButton,
   LinkBox,
+  Spacer,
   Link
 } from '@chakra-ui/react';
 import { AiOutlineShoppingCart } from 'react-icons/ai';
@@ -59,18 +60,34 @@ const Header = ({cart, setCart}) => {
           <Text fontSize="2rem" fontWeight="bold">
             Nail Tech
           </Text>
-          <Button bg="pink" outline="none">Shop Sets</Button>
+          <Link href="/shopper/products">
+            <Button bg="pink" ml={4}>
+              Shop Nail Sets
+            </Button>
+          </Link>
+          <Link href="/shopper/customizer">
+            <Button bg="pink" ml={4}>
+              Create a Set
+            </Button>
+          </Link>
+          <Link href="/shopper/nailtechs">
+            <Button bg="pink" ml={4}>
+              Find a Tech
+            </Button>
+          </Link>
         </Flex>
-        <Flex>
-          <Button bg="pink" mr={5} onClick={toggleCart}>
-            <Icon as={AiOutlineShoppingCart} boxSize={6} />
-          </Button>
+        <Flex alignItems="center">
+          <Spacer />
           <Button variant="outline" mr={4} onClick={toggleLogInModal}>
             Login
           </Button>
-          <Button colorScheme="blue" onClick={toggleSignUpModal}>
+          <Button colorScheme="blue" mr={4} onClick={toggleSignUpModal}>
             Sign Up
           </Button>
+          <Button bg="pink" onClick={toggleCart}>
+            <Icon as={AiOutlineShoppingCart} boxSize={6} />
+          </Button>
+          {/* Other buttons */}
         </Flex>
       </Flex>
 

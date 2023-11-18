@@ -106,7 +106,7 @@ function LandingPage({onAddToCart}) {
         Nail Tech
       </Heading>
       <Text fontSize="xl" color="gray.600" mb={8}>
-        Convenient. Quick. Beautiful. Pick a design and we'll find a certified
+        Convenient. Quick. Beautiful. Pick a design or make a new one from scratch - we'll find a certified
         nail technician to make it.
       </Text>
       <Button colorScheme="teal" size="lg" onClick={handleShopNow} mb={6}>

@@ -1,5 +1,6 @@
 import React from 'react';
 import { Box, Image, Text, Button, Grid } from '@chakra-ui/react';
+import { Link } from 'react-router-dom';
 
 const ProductCard = ({ product, onAddToCart }) => {
   console.log(product)
@@ -25,6 +26,13 @@ const ProductCard = ({ product, onAddToCart }) => {
       </Text>
       <Button colorScheme="teal" onClick={() => onAddToCart(product)}>
         Add to Cart
+      </Button>
+      <Button
+        as={Link}
+        colorScheme="teal"
+        to={`/products/${product.id}`}
+      >
+        View Details
       </Button>
     </Box>
   );

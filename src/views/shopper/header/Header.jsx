@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import AuthModals from '../authModals/AuthModals.jsx';
 import {
   Box,
   Flex,
@@ -94,7 +95,7 @@ const Header = ({cart, setCart}) => {
       {/* The following needs to be broken into different files */}
       {/* Login Modal */}
       <Modal isOpen={showLoginModal} onClose={toggleLogInModal}>
-        <ModalOverlay />
+        {/* <ModalOverlay />
         <ModalContent>
           <ModalHeader>Login</ModalHeader>
           <ModalCloseButton />
@@ -115,12 +116,13 @@ const Header = ({cart, setCart}) => {
               </Stack>
             </form>
           </ModalBody>
-        </ModalContent>
+        </ModalContent> */}
+        <AuthModals showLoginModal={showLoginModal} setShowLoginModal={setShowLoginModal} showSignupModal={showSignupModal} setShowLoginModal={setShowSignupModal} />
       </Modal>
 
       {/* Signup Modal, same as login for now */}
       <Modal isOpen={showSignupModal} onClose={toggleSignUpModal}>
-        <ModalOverlay />
+        {/* <ModalOverlay />
         <ModalContent>
           <ModalHeader>Sign Up</ModalHeader>
           <ModalCloseButton />
@@ -141,7 +143,7 @@ const Header = ({cart, setCart}) => {
               </Stack>
             </form>
           </ModalBody>
-        </ModalContent>
+        </ModalContent> */}
       </Modal>
       {/* shopping cart */}
       <Drawer isOpen={showCart} onClose={toggleCart} placement="right">

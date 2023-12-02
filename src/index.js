@@ -4,6 +4,8 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { ChakraProvider, extendTheme } from '@chakra-ui/react';
+import { ChakraProvider } from '@chakra-ui/react';
+import { BrowserRouter as Router } from 'react-router-dom'
 
 const colors = {
   brandPink: '#efb9d0',
@@ -23,6 +25,10 @@ ReactDOM.render(
   <React.StrictMode>
     <ChakraProvider theme={theme}>
       <App />
+    <ChakraProvider>
+      <Router>
+        <App />
+      </Router>
     </ChakraProvider>
   </React.StrictMode>,
   document.getElementById('root'),

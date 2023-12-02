@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import AuthModals from '../authModals/AuthModals.jsx';
+import { Link as ReactRouterLink } from 'react-router-dom'
+import { Link as ChakraLink, LinkProps } from '@chakra-ui/react'
 import {
   Box,
   Flex,
@@ -29,8 +30,10 @@ import {
 import { AiOutlineShoppingCart } from 'react-icons/ai';
 import ShoppingCart from './../cart/ShoppingCart.jsx';
 import Checkout from '../checkout/Checkout.jsx';
+import Login from './Login.jsx';
+import Signup from './Signup.jsx';
 
-const Header = ({cart, setCart}) => {
+const Header = ({cart, setCart, user, handleLogout}) => {
   // holding pages as use states until routes are added
   const [showLoginModal, setShowLoginModal] = useState(false);
   const [showSignupModal, setShowSignupModal] = useState(false);
@@ -39,124 +42,41 @@ const Header = ({cart, setCart}) => {
   const toggleCart = () => {
     setShowCart(!showCart);
   };
-  const toggleLogInModal = () => setShowLoginModal(!showLoginModal);
-  const toggleSignUpModal = () => setShowSignupModal(!showSignupModal);
-
-  const handleLogin = e => {
-    e.preventDefault();
-    toggleLogInModal();
-    // login logic here
-  };
-
-  const handleSignup = e => {
-    e.preventDefault();
-    toggleSignUpModal();
-    // signup logic here
-  };
 
   return (
-    <Box as="header" bg="pink" color="white" p={4}>
-      <Flex justifyContent="space-between" alignItems="center">
-        <Flex justifyContent="space-around" alignContent="center">
-          <Text fontSize="2rem" fontWeight="bold">
-            Nail Tech
-          </Text>
-          <Link href="/shopper/products">
-            <Button bg="pink" ml={4}>
-              Shop Nail Sets
-            </Button>
-          </Link>
-          <Link href="/shopper/customizer">
-            <Button bg="pink" ml={4}>
-              Create a Set
-            </Button>
-          </Link>
-          <Link href="/shopper/nailtechs">
-            <Button bg="pink" ml={4}>
-              Find a Tech
-            </Button>
-          </Link>
-        </Flex>
-        <Flex alignItems="center">
-          <Spacer />
-          <Button variant="outline" mr={4} onClick={toggleLogInModal}>
-            Login
-          </Button>
-          <Button colorScheme="blue" mr={4} onClick={toggleSignUpModal}>
-            Sign Up
-          </Button>
-          <Button bg="pink" onClick={toggleCart}>
+  <nav>
+    <h2>Nail Tech</h2>
+    {user ?
+      <ul>
+        <li><ChakraLink as={ReactRouterLink} to="/my-profile">My Profile</ChakraLink></li>
+        <li>
+          <ChakraLink as={ReactRouterLink} to="/" onClick={handleLogout}>Logout</ChakraLink>
+        </li>
+      </ul>
+    :
+      <ul>
+          <li><ChakraLink as={ReactRouterLink} to="/shopper/products">Shop Nail Sets</ChakraLink></li>
+          <li><ChakraLink as={ReactRouterLink} to="/shopper/customizer">Create a Set</ChakraLink></li>
+          <li><ChakraLink as={ReactRouterLink} to="/shopper/nailtechs">Find a Tech</ChakraLink></li>
+          <li><ChakraLink as={ReactRouterLink} to="/login">Log In</ChakraLink></li>
+          <li><ChakraLink as={ReactRouterLink} to="/signup">Sign Up</ChakraLink></li>
+          <Button onClick={toggleCart}>
             <Icon as={AiOutlineShoppingCart} boxSize={6} />
           </Button>
-          {/* Other buttons */}
-        </Flex>
-      </Flex>
 
-      {/* The following needs to be broken into different files */}
-      {/* Login Modal */}
-      <Modal isOpen={showLoginModal} onClose={toggleLogInModal}>
-        {/* <ModalOverlay />
-        <ModalContent>
-          <ModalHeader>Login</ModalHeader>
-          <ModalCloseButton />
-          <ModalBody>
-            <form onSubmit={handleLogin}>
-              <Stack spacing={4}>
-                <FormControl>
-                  <FormLabel>Email address</FormLabel>
-                  <Input type="email" placeholder="Enter your email" />
-                </FormControl>
-                <FormControl>
-                  <FormLabel>Password</FormLabel>
-                  <Input type="password" placeholder="Enter your password" />
-                </FormControl>
-                <Button type="submit" colorScheme="teal">
-                  Login
-                </Button>
-              </Stack>
-            </form>
-          </ModalBody>
-        </ModalContent> */}
-        <AuthModals showLoginModal={showLoginModal} setShowLoginModal={setShowLoginModal} showSignupModal={showSignupModal} setShowLoginModal={setShowSignupModal} />
-      </Modal>
-
-      {/* Signup Modal, same as login for now */}
-      <Modal isOpen={showSignupModal} onClose={toggleSignUpModal}>
-        {/* <ModalOverlay />
-        <ModalContent>
-          <ModalHeader>Sign Up</ModalHeader>
-          <ModalCloseButton />
-          <ModalBody>
-            <form onSubmit={handleSignup}>
-              <Stack spacing={4}>
-                <FormControl>
-                  <FormLabel>Email address</FormLabel>
-                  <Input type="email" placeholder="Enter your email" />
-                </FormControl>
-                <FormControl>
-                  <FormLabel>Password</FormLabel>
-                  <Input type="password" placeholder="Enter your password" />
-                </FormControl>
-                <Button type="submit" colorScheme="teal">
-                  Sign Up
-                </Button>
-              </Stack>
-            </form>
-          </ModalBody>
-        </ModalContent> */}
-      </Modal>
-      {/* shopping cart */}
-      <Drawer isOpen={showCart} onClose={toggleCart} placement="right">
-        <DrawerOverlay />
-        <DrawerContent>
-          <DrawerCloseButton />
-          <DrawerHeader>Shopping Cart</DrawerHeader>
-          <DrawerBody>
-            <ShoppingCart cart={cart} setCart={setCart} />
-          </DrawerBody>
-        </DrawerContent>
-      </Drawer>
-    </Box>
+        <Drawer isOpen={showCart} onClose={toggleCart} placement="right">
+          <DrawerOverlay />
+          <DrawerContent>
+            <DrawerCloseButton />
+            <DrawerHeader>Shopping Cart</DrawerHeader>
+            <DrawerBody>
+              <ShoppingCart cart={cart} setCart={setCart} />
+            </DrawerBody>
+          </DrawerContent>
+        </Drawer>
+      </ul>
+    }
+  </nav>
   );
 };
 

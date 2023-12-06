@@ -20,7 +20,7 @@ import Login from './views/shopper/header/Login.jsx';
 import Signup from './views/shopper/header/Signup.jsx';
 import ChangePassword from './views/ChangePassword/ChangePassword.jsx';
 import MyProfile from './views/MyProfile/MyProfile.jsx';
-
+import Header from './views/shopper/header/Header.jsx'
 
 export default function App() {
   // setting state
@@ -31,13 +31,13 @@ export default function App() {
 const navigate = useNavigate()
 
   // use effects
-  useEffect(() => {
-    const fetchProfile = async () => {
-      const profileData = await profileService.getMyProfile()
-      setProfile(profileData)
-    }
-    fetchProfile()
-  }, [])
+  // useEffect(() => {
+  //   const fetchProfile = async () => {
+  //     const profileData = await profileService.getMyProfile()
+  //     setProfile(profileData)
+  //   }
+  //   fetchProfile()
+  // }, [])
 
 
 

@@ -44,27 +44,18 @@ const ImageCarousel = ({ images }) => {
   return (
     <Box textAlign="center" mt={12}>
       <Flex justify="center" align="center">
-        <IconButton
-          aria-label="Previous Slide"
-          icon={<FaChevronLeft />}
-          onClick={prevSlide}
-          mr={3}
-        />
         {images && images.length > 0 && (
-          <Image
-            src={images[currentSlide]}
-            alt={`Slide ${currentSlide + 1}`}
-            w="400px"
-            h="300px"
-            mx={2}
-          />
+          <div width="100vw">
+            {' '}
+            <Image
+              src={images[currentSlide]}
+              alt={`Slide ${currentSlide + 1}`}
+              w="50vw"
+              h="60vh"
+              mx={2}
+            />
+          </div>
         )}
-        <IconButton
-          aria-label="Next Slide"
-          icon={<FaChevronRight />}
-          onClick={nextSlide}
-          ml={3}
-        />
       </Flex>
     </Box>
   );

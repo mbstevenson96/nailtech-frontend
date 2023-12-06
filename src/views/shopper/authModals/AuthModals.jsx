@@ -53,8 +53,6 @@ const AuthModals = ({
     }
   };
 
-  console.log(loginCredentials)
-
   return (
     <>
       {/* Login Modal */}

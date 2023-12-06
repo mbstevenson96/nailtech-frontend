@@ -28,7 +28,6 @@ function ShoppingCart({cart, setCart}) { // consider using callBack
   const closeCheckout = () => {
     setShowCheckout(false)
   }
-  console.log(cart)
 
 const getTotalPrice = () => {
   return cart.reduce((total, item) => {

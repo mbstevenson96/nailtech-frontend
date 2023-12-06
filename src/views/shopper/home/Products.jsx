@@ -6,14 +6,14 @@ const ProductCard = ({ product, onAddToCart }) => {
   console.log(product)
   return (
     <Box borderWidth="1px" borderRadius="lg" overflow="hidden" p={4}>
-      <Image
+      {/* <Image
         src={product.image}
         alt={product.title}
         h="200px"
         w="100%"
         objectFit="cover"
         mb={4}
-      />
+      /> */}
 
       <Text fontSize="xl" fontWeight="semibold" mb={2}>
         {product.title}

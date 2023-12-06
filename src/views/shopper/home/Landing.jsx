@@ -6,10 +6,16 @@ import {
   Text,
   Link,
   Image,
+  Grid,
+  GridItem,
+  Container,
   Flex,
+  HStack,
 } from '@chakra-ui/react';
 import Carousel from './Caorusel.jsx';
 import ProductCards from './Products.jsx';
+import heroImage1 from '../../../assets/home1.png'
+import heroImage2 from '../../../assets/home2.png'
 // import { useNavigate } from 'react-router-dom'; waiting for react router to be set up
 
 function LandingPage({onAddToCart}) {
@@ -20,16 +26,14 @@ function LandingPage({onAddToCart}) {
   };
 
   const carouselImages = [
-    'https://via.placeholder.com/100',
-    'https://via.placeholder.com/200',
-    'https://via.placeholder.com/300',
+    heroImage1,
+    heroImage2,
   ];
 
   const products = [
     {
       id: 1,
       title: 'Cool Product',
-      image: 'https://via.placeholder.com/300',
       description: 'This is a really awesome product!',
       price: 29.99,
       quantity: 1,
@@ -37,7 +41,6 @@ function LandingPage({onAddToCart}) {
     {
       id: 2,
       title: 'Awesome Product',
-      image: 'https://via.placeholder.com/300',
       description: 'You will love this amazing product!',
       price: 39.99,
       quantity: 1,
@@ -45,7 +48,6 @@ function LandingPage({onAddToCart}) {
     {
       id: 3,
       title: 'Awesome Product',
-      image: 'https://via.placeholder.com/300',
       description: 'You will love this amazing product!',
       price: 39.99,
       quantity: 1,
@@ -53,7 +55,6 @@ function LandingPage({onAddToCart}) {
     {
       id: 4,
       title: 'Awesome Product',
-      image: 'https://via.placeholder.com/300',
       description: 'You will love this amazing product!',
       price: 39.99,
       quantity: 1,
@@ -61,7 +62,6 @@ function LandingPage({onAddToCart}) {
     {
       id: 5,
       title: 'Awesome Product',
-      image: 'https://via.placeholder.com/300',
       description: 'You will love this amazing product!',
       price: 39.99,
       quantity: 1,
@@ -69,7 +69,6 @@ function LandingPage({onAddToCart}) {
     {
       id: 6,
       title: 'Awesome Product',
-      image: 'https://via.placeholder.com/300',
       description: 'You will love this amazing product!',
       price: 39.99,
       quantity: 1,
@@ -77,7 +76,6 @@ function LandingPage({onAddToCart}) {
     {
       id: 7,
       title: 'Awesome Product',
-      image: 'https://via.placeholder.com/300',
       description: 'You will love this amazing product!',
       price: 39.99,
       quantity: 1,
@@ -85,7 +83,6 @@ function LandingPage({onAddToCart}) {
     {
       id: 8,
       title: 'Awesome Product',
-      image: 'https://via.placeholder.com/300',
       description: 'You will love this amazing product!',
       price: 39.99,
       quantity: 1,
@@ -93,7 +90,6 @@ function LandingPage({onAddToCart}) {
     {
       id: 9,
       title: 'Awesome Product',
-      image: 'https://via.placeholder.com/300',
       description: 'You will love this amazing product!',
       price: 39.99,
       quantity: 1,
@@ -101,26 +97,46 @@ function LandingPage({onAddToCart}) {
   ];
 
   return (
-    <Box textAlign="center" mt={10}>
-      <Heading as="h1" size="2xl" mb={4}>
-        Nail Tech
-      </Heading>
-      <Text fontSize="xl" color="gray.600" mb={8}>
-        Convenient. Quick. Beautiful. Pick a design or make a new one from scratch - we'll find a certified
-        nail technician to make it.
-      </Text>
-      <Button colorScheme="teal" size="lg" onClick={handleShopNow} mb={6}>
-        Shop Now
-      </Button>
-      <Text fontSize="sm" color="gray.500">
-        Not sure?{' '}
-        <Link color="teal.500" href="#">
-          Learn more
-        </Link>
-      </Text>
-      <Carousel images={carouselImages} />
-      <ProductCards products={products} onAddToCart={onAddToCart} />
-    </Box>
+    <Container maxW="container.lg" textAlign="center" mt={5}>
+      <Flex
+        alignItems="flex-start"
+        justifyContent="center"
+        gap="5vw"
+        width="70vw"
+        mb={10}
+        flexDirection={['column', 'column', 'row']} // Adjust the direction for responsiveness
+      >
+        <Carousel images={carouselImages} width={['100%', '100%', '100%']} />
+        <Box width={['100%', '100%', '25%']}>
+          <Text fontSize="xl" color="gray.600" mb={4} alignSelf="center">
+            Convenient. Quick. Beautiful. Pick a design or make a new one from
+            scratch - we'll find a certified nail technician to make it.
+          </Text>
+          <Button
+            size="md"
+            onClick={handleShopNow}
+            mb={4}
+            width="200px"
+            border="none"
+          >
+            Shop Now
+          </Button>
+        </Box>
+      </Flex>
+
+      <Box ml={8}>
+        <Grid
+          templateColumns="repeat(auto-fit, minmax(250px, 1fr))"
+          gap={6}
+          justifyContent="center"
+          alignItems="center"
+        >
+            <GridItem>
+              <ProductCards products={products} onAddToCart={onAddToCart} />
+            </GridItem>
+        </Grid>
+      </Box>
+    </Container>
   );
 }
 

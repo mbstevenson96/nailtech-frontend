@@ -97,7 +97,7 @@ function LandingPage({onAddToCart}) {
   ];
 
   return (
-    <Container maxW="container.lg" textAlign="center" mt={5}>
+    <Container maxW="60vw" textAlign="center" mt={5}>
       <Flex
         alignItems="flex-start"
         justifyContent="center"
@@ -107,8 +107,8 @@ function LandingPage({onAddToCart}) {
         flexDirection={['column', 'column', 'row']} // Adjust the direction for responsiveness
       >
         <Carousel images={carouselImages} width={['100%', '100%', '100%']} />
-        <Box width={['100%', '100%', '25%']}>
-          <Text fontSize="xl" color="gray.600" mb={4} alignSelf="center">
+        <Box width={['100%', '100%']}>
+          <Text fontSize="xl" color="gray.600" mb={4} alignSelf="center" marginTop="8rem">
             Convenient. Quick. Beautiful. Pick a design or make a new one from
             scratch - we'll find a certified nail technician to make it.
           </Text>

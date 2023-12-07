@@ -30,7 +30,7 @@ function ShoppingCart({cart, setCart}) { // consider using callBack
   }
 
 const getTotalPrice = () => {
-  return cart.reduce((total, item) => {
+  return cart?.reduce((total, item) => {
     const itemPrice = parseFloat(item.price);
     const itemQuantity = parseInt(item.quantity); 
 
@@ -40,7 +40,7 @@ const getTotalPrice = () => {
 
   const handleQuantityChange = (itemId, value) => {
     setCart(prevItems =>
-      prevItems.map(item =>
+      prevItems?.map(item =>
         item.id === itemId ? { ...item, quantity: parseInt(value) } : item,
       ),
     );
@@ -53,7 +53,7 @@ const getTotalPrice = () => {
   return (
     <Box p={4}>
       <VStack align="flex-start" spacing={4}>
-        {cart.map(item => (
+        {cart?.map(item => (
           <Box key={item.id} w="100%">
             <HStack justify="space-between" align="center">
               <Image
@@ -70,7 +70,7 @@ const getTotalPrice = () => {
                   ${item.price} each
                 </Text>
                 <Text fontSize="md">
-                  Total: ${(item.price * item.quantity).toFixed(2)}
+                  Total: ${(item.price * item.quantity)?.toFixed(2)}
                 </Text>
                 <HStack spacing={2} mt={2}>
                   <NumberInput
@@ -102,7 +102,7 @@ const getTotalPrice = () => {
         ))}
         <Box w="100%">
           <Text fontSize="lg" fontWeight="bold">
-            Total: ${getTotalPrice().toFixed(2)}
+            Total: ${getTotalPrice()?.toFixed(2)}
           </Text>
           <Button
             colorScheme="teal"

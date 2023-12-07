@@ -50,7 +50,7 @@ const ImageCarousel = ({ images }) => {
             <Image
               src={images[currentSlide]}
               alt={`Slide ${currentSlide + 1}`}
-              w="50vw"
+              w="100vw"
               h="60vh"
               mx={2}
             />

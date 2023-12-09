@@ -21,6 +21,7 @@ import {useCart} from './CartContext';
 function ShoppingCart() { // consider using callBack
   const [showCheckout, setShowCheckout] = useState(false);
   const toggleCheckoutModal = () => setShowCheckout(!showCheckout);
+  
   const handleCheckout = e => {
     e.preventDefault();
     toggleCheckoutModal();

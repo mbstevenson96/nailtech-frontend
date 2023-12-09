@@ -8,7 +8,7 @@ const MyProfile = (props) => {
     <div>
     <div>
       <h2>Welcome, {props.profile.name} </h2>
-      {/* <img src={`${props.profile.photo}`} alt="profile upload" style={{height: '90px', marginTop: '0px'}} /> */}
+      <img src={`${props.profile.photo}`} alt="profile upload" style={{height: '90px', marginTop: '0px'}} />
       <ChakraLink as={ReactRouterLink} to="/changePassword">Change Account Password</ChakraLink>
     </div>
     </div> 

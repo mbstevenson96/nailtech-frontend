@@ -16,12 +16,10 @@ import {
 } from '@chakra-ui/react';
 import { BsTrash3Fill } from 'react-icons/bs';
 import Checkout from '../checkout/Checkout';
-import {useCart} from './CartContext';
 
-function ShoppingCart() { // consider using callBack
+function ShoppingCart({cart, removeFromCart, addToCart, handleQuantityChange}) { // consider using callBack
   const [showCheckout, setShowCheckout] = useState(false);
   const toggleCheckoutModal = () => setShowCheckout(!showCheckout);
-  
   const handleCheckout = e => {
     e.preventDefault();
     toggleCheckoutModal();
@@ -31,8 +29,6 @@ function ShoppingCart() { // consider using callBack
     setShowCheckout(false)
   }
 
-  const [cart, setCart] = useCart();
-
 const getTotalPrice = () => {
   return cart?.reduce((total, item) => {
     const itemPrice = parseFloat(item.price);
@@ -41,18 +37,6 @@ const getTotalPrice = () => {
     return total + itemPrice * itemQuantity;
   }, 0);
 };
-
-  const handleQuantityChange = (itemId, value) => {
-    setCart(prevItems =>
-      prevItems?.map(item =>
-        item.id === itemId ? { ...item, quantity: parseInt(value) } : item,
-      ),
-    );
-  };
-
-  const handleRemoveItem = itemId => {
-    setCart(prevItems => prevItems.filter(item => item.id !== itemId));
-  };
 
   return (
     <Box p={4}>
@@ -95,7 +79,7 @@ const getTotalPrice = () => {
                     <BsTrash3Fill
                       size={'50'}
                       color={'red'}
-                      onClick={() => handleRemoveItem(item.id)}
+                      onClick={() => removeFromCart(item.id)}
                     />
                 </HStack>
               </Box>

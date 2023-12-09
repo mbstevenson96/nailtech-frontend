@@ -3,7 +3,6 @@ import { Box, Image, Text, Button, Grid, Flex } from '@chakra-ui/react';
 import { Link } from 'react-router-dom';
 
 const ProductCard = ({ product, onAddToCart }) => {
-  console.log(product)
   return (
     <Box borderWidth="1px" borderRadius="lg" overflow="hidden" p={4}>
       {/* <Image
@@ -36,7 +35,7 @@ const ProductCard = ({ product, onAddToCart }) => {
         <Button
           as={Link}
           to={`/products/${product.id}`}
-          width="8vw" // Adjust the size here (e.g., sm for small)
+          width="8vw"
         >
           View Details
         </Button>
@@ -46,6 +45,7 @@ const ProductCard = ({ product, onAddToCart }) => {
 };
 
 const ProductCards = ({ products, onAddToCart }) => {
+
   return (
     <Grid templateColumns="repeat(auto-fill, minmax(250px, 1fr))" gap={6} p={30}>
       {products?.map(product => (

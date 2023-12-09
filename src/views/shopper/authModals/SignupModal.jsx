@@ -13,22 +13,30 @@ import {
   Button,
 } from '@chakra-ui/react';
 import { Link, useNavigate } from 'react-router-dom';
-import * as authService from '../../../services/authService';
+import * as authService from '../../../services/authService'
 
 const SignupFormModal = ({
-  updateMessage,
-  handleSignupOrLogin,
   showSignupModal,
   setShowSignupModal,
 }) => {
+
   const navigate = useNavigate();
+
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     password: '',
     passwordConf: '',
   });
+  const [message, setMessage] = useState([''])
+  const [user, setUser] = useState(authService.getUser())
+
+
   const [photoData, setPhotoData] = useState({});
+
+  const updateMessage = msg => {
+    setMessage(msg)
+  }
 
   const handleChange = e => {
     updateMessage('');
@@ -42,12 +50,16 @@ const SignupFormModal = ({
     setPhotoData({ photo: evt.target.files[0] });
   };
 
+  const handleSignupOrLogin = () => {
+    setUser(authService.getUser())
+  }
+
   const handleSubmit = async e => {
     e.preventDefault();
     try {
       await authService.signup(formData, photoData.photo);
       handleSignupOrLogin();
-      navigate('/');
+      navigate('/shopper/nailtechs');
     } catch (err) {
       updateMessage(err.message);
     }
@@ -67,6 +79,7 @@ const SignupFormModal = ({
         <ModalCloseButton />
         <ModalBody>
           <form autoComplete="off" onSubmit={handleSubmit}>
+          <p>{message}</p>
             <Stack spacing={4}>
               <FormControl>
                 <FormLabel>Name</FormLabel>

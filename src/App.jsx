@@ -16,11 +16,10 @@ import Customizer from './views/shopper/lab/Customizer.jsx';
 import FindATech from './views/shopper/findATech/FindATech.jsx';
 import HomeNailTech from './views/tech/home/Home.jsx';
 import Orders from './views/tech/orders/Orders.jsx';
-import Login from './views/shopper/header/Login.jsx';
-import Signup from './views/shopper/header/Signup.jsx';
+import LoginModal from './views/shopper/authModals/LoginModal.jsx'
+import SignupModal from './views/shopper/authModals/SignupModal.jsx'
 import ChangePassword from './views/ChangePassword/ChangePassword.jsx';
 import MyProfile from './views/MyProfile/MyProfile.jsx';
-import Header from './views/shopper/header/Header.jsx'
 
 export default function App() {
   // setting state
@@ -31,13 +30,13 @@ export default function App() {
 const navigate = useNavigate()
 
   // use effects
-  // useEffect(() => {
-  //   const fetchProfile = async () => {
-  //     const profileData = await profileService.getMyProfile()
-  //     setProfile(profileData)
-  //   }
-  //   fetchProfile()
-  // }, [])
+  useEffect(() => {
+    const fetchProfile = async () => {
+      const profileData = await profileService.getMyProfile()
+      setProfile(profileData)
+    }
+    fetchProfile()
+  }, [])
 
 
 
@@ -73,8 +72,8 @@ const navigate = useNavigate()
       <Route path="/" element={<HomeShopper />} />
 
       {/* Login/Logout Route */}
-      <Route path="/login" element={<Login handleSignupOrLogin={handleSignupOrLogin} />}  />
-      <Route path="/signup" element={<Signup handleSignupOrLogin={handleSignupOrLogin} />}  />
+      <Route path="/login" element={<LoginModal />}  />
+      <Route path="/signup" element={<SignupModal />}  />
       <Route
           path="/changePassword"
           element={

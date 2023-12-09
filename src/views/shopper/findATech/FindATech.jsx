@@ -117,7 +117,7 @@ const ProfileCard = ({ tech, openModal }) => {
         {tech.name}
       </Heading>
       <Text margin="0.4rem">{tech.description}</Text>
-      <Flex justifyContent="center" alignItems="center" mb="2" >
+      <Flex justifyContent="center" alignItems="center" mb="2">
         <Image
           width="245px"
           height="250px"
@@ -126,7 +126,7 @@ const ProfileCard = ({ tech, openModal }) => {
         />
       </Flex>
       <Button
-        colorScheme="pink"
+        backgroundColor="#e3c4cc"
         alignSelf="center"
         width="8vw"
         onClick={() => openModal(tech)}
@@ -185,7 +185,7 @@ const FindATech = () => {
     <Layout>
       <Flex flexDirection="column" alignItems="center" mb="4">
         <Container padding="none" textAlign="center">
-          <Heading as="h1" size="xl" mb="4" marginTop="4rem">
+          <Heading as="h1" size="xl" mb="4" marginTop="4rem" color="#B0A08D">
             Find a Nail Tech
           </Heading>
           <Text fontSize="xl" color="gray.600" mb={4} marginTop="1rem">
@@ -224,9 +224,9 @@ const FindATech = () => {
         </Flex>
       </Flex>
 
-      <Flex flexWrap="wrap" margin="3rem"  justifyContent="space-around">
+      <Flex flexWrap="wrap" margin="3rem" justifyContent="space-around">
         {filteredTechs.map(tech => (
-          <ProfileCard  key={tech.id} tech={tech} openModal={openModal} />
+          <ProfileCard key={tech.id} tech={tech} openModal={openModal} />
         ))}
       </Flex>
       <Modal isOpen={selectedTech !== null} onClose={closeModal} size="lg">

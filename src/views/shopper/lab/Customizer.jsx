@@ -177,54 +177,40 @@ function Customizer() {
             </Text>
           </Text>
         </Flex>
-        <Grid templateColumns="repeat(2, 1fr)" gap={4}>
           {/* Section for building the order */}
-          <GridItem>
-            <FormControl mb={4}>
-              <FormLabel
-                fontWeight="bold"
-                onClick={() => setIsLengthCollapsed(!isLengthCollapsed)}
-              >
-                Length {isLengthCollapsed && '✓'}
-              </FormLabel>
-              <Stack>
-                {nailLengthOptions.map(option => (
-                  <Checkbox
-                    key={option.value}
-                    onChange={e =>
-                      handleNailLengthChange(option.label, e.target.checked)
-                    }
-                  >
-                    {option.label}
-                  </Checkbox>
-                ))}
-              </Stack>
-            </FormControl>
-          </GridItem>
-          <GridItem>
-            <FormControl mb={4}>
-              <FormLabel
-                fontWeight="bold"
-                cursor="pointer"
-                onClick={() => setIsShapeCollapsed(!isShapeCollapsed)}
-              >
-                Shape {isShapeCollapsed && '✓'}
-              </FormLabel>
-              <Stack>
-                {
-                  nailShapeOptions.map(option => (
-                    <Checkbox
-                      key={option.value}
-                      onChange={e =>
-                        handleNailShapeChange(option.label, e.target.checked)
-                      }
-                    >
-                      {option.label}
-                    </Checkbox>
-                  ))}
-              </Stack>{' '}
-            </FormControl>
-          </GridItem>
+          <Grid templateColumns="repeat(2, 1fr)" gap={4}>
+        <GridItem>
+          <FormControl mb={4}>
+            <FormLabel fontWeight="bold">Length</FormLabel>
+            <Select
+              placeholder="Select nail length"
+              onChange={e => handleNailLengthChange(e.target.value)}
+              value={nailLength}
+            >
+              {nailLengthOptions.map(option => (
+                <option key={option.value} value={option.value}>
+                  {option.label}
+                </option>
+              ))}
+            </Select>
+          </FormControl>
+        </GridItem>
+        <GridItem>
+          <FormControl mb={4}>
+            <FormLabel fontWeight="bold">Shape</FormLabel>
+            <Select
+              placeholder="Select nail shape"
+              onChange={e => handleNailShapeChange(e.target.value)}
+              value={nailShape}
+            >
+              {nailShapeOptions.map(option => (
+                <option key={option.value} value={option.value}>
+                  {option.label}
+                </option>
+              ))}
+            </Select>
+          </FormControl>
+        </GridItem>
           <GridItem>
             <FormControl mb={4}>
               <FormLabel
@@ -246,6 +232,8 @@ function Customizer() {
                 ))}
               </Stack>
             </FormControl>
+            </GridItem>
+            <GridItem>
             <FormControl mb={4}>
               <FormLabel fontWeight="bold">Color</FormLabel>
               <ChromePicker
@@ -265,7 +253,12 @@ function Customizer() {
               <p>Nail Color: {colorNames[nailColor]}</p>
             </Box>
             <Box mt={4}>
-              <Button colorScheme="pink" border="none" size="md" width="8vw">
+              <Button
+                backgroundColor="#e3c4cc"
+                border="none"
+                size="md"
+                width="8vw"
+              >
                 Add to Cart
               </Button>
             </Box>

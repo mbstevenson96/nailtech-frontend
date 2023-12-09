@@ -80,7 +80,7 @@ function LandingPage() {
    },
    {
      id: 4,
-     title: 'Pink natural dipped brow',
+     title: 'Pink natural dip powder',
      description: 'By Helena!',
      price: 39.99,
      quantity: 1,
@@ -100,15 +100,20 @@ function LandingPage() {
       >
         <Carousel images={carouselImages} width={['100%', '100%', '100%']} />
         <Box width={['100%', '100%']}>
+          <Heading color="#B0A08D" mt={10}>
+            Where creativity meets your fingertips.
+          </Heading>
           <Text
             fontSize="xl"
             color="gray.600"
             mb={4}
             alignSelf="center"
             marginTop="8rem"
+            mt={10}
           >
             Convenient. Quick. Beautiful. Pick a design or make a new one from
-            scratch - we'll find a certified nail technician to design and ship directly to you.
+            scratch - we'll find a certified nail technician to design and ship
+            directly to you.
           </Text>
           <Button
             size="md"
@@ -116,6 +121,7 @@ function LandingPage() {
             mb={4}
             width="200px"
             border="none"
+            backgroundColor="#e3c4cc"
           >
             Shop Now
           </Button>
@@ -132,7 +138,7 @@ function LandingPage() {
           <GridItem>
             <Heading>Ready to Ship Sets</Heading>
             <ProductCards products={products} onAddToCart={addToCart} />
-            <Button width="10vw" border="none">
+            <Button width="10vw" border="none" backgroundColor="#e3c4cc">
               Shop All
             </Button>
           </GridItem>

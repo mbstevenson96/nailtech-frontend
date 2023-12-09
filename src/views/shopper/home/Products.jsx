@@ -25,18 +25,14 @@ const ProductCard = ({ product, onAddToCart }) => {
       </Text>
       <Flex justifyContent="space-evenly" gap="1rem">
         <Button
-          colorScheme="pink"
+          backgroundColor="#e3c4cc"
           border="white"
           width="9vw"
           onClick={() => onAddToCart(product)}
         >
           Add to Cart
         </Button>
-        <Button
-          as={Link}
-          to={`/products/${product.id}`}
-          width="9vw"
-        >
+        <Button as={Link} to={`/products/${product.id}`} width="9vw">
           View Details
         </Button>
       </Flex>

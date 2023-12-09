@@ -95,9 +95,10 @@ console.log(cart)
             Total: ${getTotalPrice()?.toFixed(2)}
           </Text>
           <Button
-            colorScheme="teal"
+            backgroundColor="#e3c4cc"
             mt={4}
             onClick={() => setShowCheckout(true)}
+            border="none"
           >
             Checkout
           </Button>

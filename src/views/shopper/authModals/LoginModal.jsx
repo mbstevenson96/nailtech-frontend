@@ -16,28 +16,40 @@ import { Link, useNavigate } from 'react-router-dom';
 import * as authService from '../../../services/authService';
 
 const LoginFormModal = ({
-  updateMessage,
-  handleSignupOrLogin,
   showLoginModal,
   setShowLoginModal,
-}) => {
+}
+) => {
+
   const [formData, setFormData] = useState({
     email: '',
     pw: '',
   });
+  const [message, setMessage] = useState([''])
+  const [user, setUser] = useState(authService.getUser())
+
+
   const navigate = useNavigate();
+  
+  const updateMessage = msg => {
+    setMessage(msg)
+  }
 
   const handleChange = e => {
     updateMessage('');
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
+  const handleSignupOrLogin = () => {
+    setUser(authService.getUser())
+  }
+
   const handleSubmit = async evt => {
     evt.preventDefault();
     try {
       await authService.login(formData);
       handleSignupOrLogin();
-      navigate('/');
+      navigate('/shopper/nailtechs');
     } catch (err) {
       updateMessage(err.message);
     }
@@ -51,6 +63,7 @@ const LoginFormModal = ({
         <ModalCloseButton />
         <ModalBody>
           <form autoComplete="off" onSubmit={handleSubmit}>
+          <p>{message}</p>
             <Stack spacing={4}>
               <FormControl>
                 <FormLabel>Email</FormLabel>

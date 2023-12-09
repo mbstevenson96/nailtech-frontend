@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Layout from '../../../components/Layout';
 import LandingPage from './Landing';
 import { Box } from '@chakra-ui/react';
-import accent2 from '../../../assets/accent2.png';
+import accent from '../../../assets/accentBackground.png';
 import './Home.css'; 
 
 export default function Home() {
@@ -19,6 +19,7 @@ export default function Home() {
         backgroundSize="cover"
         backgroundPosition="center"
         backgroundAttachment="fixed"
+        backgroundImage={`linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)), url(${accent})`}
         minHeight="100vh"
       >
         <LandingPage onAddToCart={onAddToCart} />

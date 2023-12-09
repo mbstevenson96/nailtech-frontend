@@ -16,9 +16,10 @@ import Carousel from './Caorusel.jsx';
 import ProductCards from './Products.jsx';
 import heroImage1 from '../../../assets/home1.png'
 import heroImage2 from '../../../assets/home2.png'
+import {useCart} from '../../../shoppingCart/CartContext.jsx'
 // import { useNavigate } from 'react-router-dom'; waiting for react router to be set up
 
-function LandingPage({onAddToCart}) {
+function LandingPage() {
   // const navigation = useNavigate();
   const handleShopNow = () => {
     alert('Shop Now needs implemented');
@@ -29,6 +30,7 @@ function LandingPage({onAddToCart}) {
     heroImage1,
     heroImage2,
   ];
+  const { cart, addToCart, removeFromCart, clearCart } = useCart();
 
   const nailTechsData = [
     { id: 1, name: 'Tech 1', location: 'Location 1', profile: 'Profile 1',  socialMediaLinks: {
@@ -70,6 +72,7 @@ function LandingPage({onAddToCart}) {
       quantity: 1,
     },
   ];
+  console.log("landing" + cart)
 
   return (
     <Container maxW="80vw" textAlign="center" mt={5}>
@@ -83,7 +86,13 @@ function LandingPage({onAddToCart}) {
       >
         <Carousel images={carouselImages} width={['100%', '100%', '100%']} />
         <Box width={['100%', '100%']}>
-          <Text fontSize="xl" color="gray.600" mb={4} alignSelf="center" marginTop="8rem">
+          <Text
+            fontSize="xl"
+            color="gray.600"
+            mb={4}
+            alignSelf="center"
+            marginTop="8rem"
+          >
             Convenient. Quick. Beautiful. Pick a design or make a new one from
             scratch - we'll find a certified nail technician to make it.
           </Text>
@@ -106,11 +115,13 @@ function LandingPage({onAddToCart}) {
           justifyContent="center"
           alignItems="center"
         >
-            <GridItem>
-              <Heading>Ready to Ship Sets</Heading>
-              <ProductCards products={products} onAddToCart={onAddToCart} />
-              <Button width="10vw" border="none">Shop All</Button>
-            </GridItem>
+          <GridItem>
+            <Heading>Ready to Ship Sets</Heading>
+            <ProductCards products={products} onAddToCart={addToCart} />
+            <Button width="10vw" border="none">
+              Shop All
+            </Button>
+          </GridItem>
         </Grid>
       </Box>
     </Container>

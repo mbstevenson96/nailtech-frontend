@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { Link as ReactRouterLink } from 'react-router-dom';
 import Logo from '../../../assets/logo.png';
 import {
@@ -16,8 +16,9 @@ import { AiOutlineShoppingCart } from 'react-icons/ai';
 import ShoppingCart from './../cart/ShoppingCart.jsx';
 import LoginModal from '../authModals/LoginModal.jsx';
 import SignupModal from '../authModals/SignupModal.jsx';
+import { CartContext } from '../../../shoppingCart/CartContext.jsx';
 
-const Header = ({ cart, setCart, user, handleLogout }) => {
+const Header = ({  user, handleLogout }) => {
   const [showLoginModal, setShowLoginModal] = useState(false);
   const [showSignupModal, setShowSignupModal] = useState(false);
   const [showCart, setShowCart] = useState(false);
@@ -25,6 +26,7 @@ const Header = ({ cart, setCart, user, handleLogout }) => {
   const toggleCart = () => {
     setShowCart(!showCart);
   };
+  const { cart, setCart, removeFromCart, handleQuanityChange } = useContext(CartContext);
 
   return (
     <Flex
@@ -100,7 +102,7 @@ const Header = ({ cart, setCart, user, handleLogout }) => {
             <DrawerContent>
               <DrawerHeader>Shopping Cart</DrawerHeader>
               <DrawerBody>
-                <ShoppingCart cart={cart} setCart={setCart} />
+                <ShoppingCart cart={cart} removeFromCart={removeFromCart} handleQuantityChange={handleQuanityChange} />
               </DrawerBody>
             </DrawerContent>
           </Drawer>

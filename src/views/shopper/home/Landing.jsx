@@ -17,6 +17,10 @@ import ProductCards from './Products.jsx';
 import heroImage1 from '../../../assets/home1.png'
 import heroImage2 from '../../../assets/home2.png'
 import {useCart} from '../../../shoppingCart/CartContext.jsx'
+import redNails from '../../../assets/red.jpg'
+import overheadPink from '../../../assets/overhead.jpg'
+import cuteNails from '../../../assets/cuteNails.jpg'
+import blackPink from '../../../assets/blackPink.png'
 // import { useNavigate } from 'react-router-dom'; waiting for react router to be set up
 
 function LandingPage() {
@@ -49,40 +53,50 @@ function LandingPage() {
     // Add more Nail Techs here
   ];
 
-  const products = [
-    {
-      id: 1,
-      title: 'Cool Product',
-      description: 'This is a really awesome product!',
-      price: 29.99,
-      quantity: 1,
-    },
-    {
-      id: 2,
-      title: 'Awesome Product',
-      description: 'You will love this amazing product!',
-      price: 39.99,
-      quantity: 1,
-    },
-    {
-      id: 3,
-      title: 'Awesome Product',
-      description: 'You will love this amazing product!',
-      price: 39.99,
-      quantity: 1,
-    },
-  ];
-  console.log("landing" + cart)
+ const products = [
+   {
+     id: 1,
+     title: 'Red french tips',
+     description: 'By Julissa',
+     price: 29.99,
+     quantity: 1,
+     img: redNails
+   },
+   {
+     id: 2,
+     title: 'Handpainted faces',
+     description: 'By Samantha',
+     price: 39.99,
+     quantity: 1,
+     img: cuteNails
+   },
+   {
+     id: 3,
+     title: 'Black/nude with decals',
+     description: 'By Aaron',
+     price: 39.99,
+     quantity: 1,
+     img: blackPink
+   },
+   {
+     id: 4,
+     title: 'Pink natural dipped brow',
+     description: 'By Helena!',
+     price: 39.99,
+     quantity: 1,
+     img: overheadPink
+   },
+ ];
 
   return (
-    <Container maxW="80vw" textAlign="center" mt={5}>
+    <Container maxW="80vw" textAlign="center" mt={5} fontFamily="Poppins">
       <Flex
         alignItems="flex-start"
         justifyContent="center"
         gap="5vw"
         width="70vw"
         mb={10}
-        flexDirection={['column', 'column', 'row']} // Adjust the direction for responsiveness
+        flexDirection={['column', 'column', 'row']}
       >
         <Carousel images={carouselImages} width={['100%', '100%', '100%']} />
         <Box width={['100%', '100%']}>
@@ -94,7 +108,7 @@ function LandingPage() {
             marginTop="8rem"
           >
             Convenient. Quick. Beautiful. Pick a design or make a new one from
-            scratch - we'll find a certified nail technician to make it.
+            scratch - we'll find a certified nail technician to design and ship directly to you.
           </Text>
           <Button
             size="md"

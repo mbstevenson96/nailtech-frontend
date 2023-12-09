@@ -4,7 +4,7 @@ import Layout from '../../../components/Layout';
 import LandingPage from './Landing';
 import { Box } from '@chakra-ui/react';
 import accent from '../../../assets/accentBackground.png';
-import './Home.css';
+import classes from './Home.css';
 import { useCart } from '../../../shoppingCart/CartContext';
 
 export default function Home() {
@@ -13,12 +13,13 @@ export default function Home() {
   return (
     <Layout>
       <Box
-        className="home-container"
+        className={classes.homeContainer}
         backgroundSize="cover"
         backgroundPosition="center"
         backgroundAttachment="fixed"
         backgroundImage={`linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)), url(${accent})`}
         minHeight="100vh"
+        fontFamily="Poppins"
       >
         <LandingPage onAddToCart={addToCart} />
       </Box>

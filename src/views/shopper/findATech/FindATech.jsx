@@ -22,29 +22,34 @@ import Helen from '../../../assets/helenaProfilePic.jpg';
 import Aaron from '../../../assets/aaronProfilePic.jpg';
 import Samantha from '../../../assets/samanthaProfilePic.jpg';
 import Julissa from '../../../assets/julissaProfilePic.jpg'
-
+import Elena from '../../../assets/elenaProfilePic.jpg'
+import Sierra from '../../../assets/sierraProfilePic.jpg'
+import Jena from '../../../assets/jenaProfilePic.jpg'
+import Evan from '../../../assets/evanProfilePic.jpg'
 
 // Sample Nail Techs data (replace with your data)
 const nailTechsData = [
   {
     id: 1,
-    name: 'Helena Tamar',
+    name: 'Sierra Tamar',
     location: 'Location 1',
     profile: 'Profile 1',
-    profilePicture: Helen,
+    description: '4 years of experience',
+    profilePicture: Sierra,
     zipCode: 43224,
     coordinates: { lat: 40.04360098648579, lon: -82.95895974417773 },
   },
   {
     id: 2,
-    name: 'Julissa Natalino',
+    name: 'Jena Boukkari',
     location: 'Location 2',
     profile: 'Profile 2',
+    description: '7 years of experience',
     socialMediaLinks: {
       instagram: 'www.instagram.com/jdNails',
       facebook: 'www.facebook.com/jdNail',
     },
-    profilePicture: Julissa,
+    profilePicture: Jena,
     website: 'https://www.jdnails.com',
     zipCode: 43215,
     coordinates: { lat: 39.96712322804097, lon: -83.00184380349856 },
@@ -54,6 +59,7 @@ const nailTechsData = [
     name: 'Samantha Sosa',
     location: 'Location 2',
     profile: 'Profile 2',
+    description: '10 years of experience',
     socialMediaLinks: {
       instagram: 'www.instagram.com/jdNails',
       facebook: 'www.facebook.com/jdNail',
@@ -65,14 +71,30 @@ const nailTechsData = [
   },
   {
     id: 4,
-    name: 'Aaron McConnell',
+    name: 'Evan Durby',
     location: 'Location 2',
     profile: 'Profile 2',
     socialMediaLinks: {
       instagram: 'www.instagram.com/jdNails',
       facebook: 'www.facebook.com/jdNail',
     },
+    description: '8 years of experience',
     profilePicture: Aaron,
+    website: 'https://www.jdnails.com',
+    zipCode: 43227,
+    coordinates: { lat: 39.04360098648579, lon: -80.95895974417773 },
+  },
+  {
+    id: 4,
+    name: 'Elena Rojas',
+    location: 'Location 2',
+    profile: 'Profile 2',
+    socialMediaLinks: {
+      instagram: 'www.instagram.com/jdNails',
+      facebook: 'www.facebook.com/jdNail',
+    },
+    description: '8 years of experience',
+    profilePicture: Elena,
     website: 'https://www.jdnails.com',
     zipCode: 43227,
     coordinates: { lat: 39.04360098648579, lon: -80.95895974417773 },
@@ -86,17 +108,19 @@ const ProfileCard = ({ tech, openModal }) => {
       alignItems="center"
       borderWidth="1px"
       borderRadius="lg"
-      p="4"
+      pt={3}
+      pl={5}
+      pr={5}
       mb="4"
-      width="18vw"
     >
-      <Heading as="h3" size="md" mb="2" textAlign="center">
+      <Heading as="h4" fontSize="1.8vh" size="md" mb="2" textAlign="center">
         {tech.name}
       </Heading>
-      <Flex justifyContent="center" alignItems="center" mb="2">
+      <Text margin="0.4rem">{tech.description}</Text>
+      <Flex justifyContent="center" alignItems="center" mb="2" >
         <Image
-          width="150px"
-          height="150px"
+          width="245px"
+          height="250px"
           color="gray.600"
           src={tech.profilePicture}
         />
@@ -113,7 +137,6 @@ const ProfileCard = ({ tech, openModal }) => {
     </Flex>
   );
 };
-
 
 const FindATech = () => {
   const [searchTerm, setSearchTerm] = useState('');
@@ -201,9 +224,9 @@ const FindATech = () => {
         </Flex>
       </Flex>
 
-      <Flex flexWrap="wrap" margin="3rem" justifyContent="space-around">
+      <Flex flexWrap="wrap" margin="3rem"  justifyContent="space-around">
         {filteredTechs.map(tech => (
-          <ProfileCard key={tech.id} tech={tech} openModal={openModal} />
+          <ProfileCard  key={tech.id} tech={tech} openModal={openModal} />
         ))}
       </Flex>
       <Modal isOpen={selectedTech !== null} onClose={closeModal} size="lg">

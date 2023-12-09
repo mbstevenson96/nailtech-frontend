@@ -33,6 +33,7 @@ const Header = ({  user, handleLogout }) => {
       align="center"
       justify="space-between"
       p={4}
+      fontFamily="Poppins"
       background="linear-gradient(135deg, rgb(255,221,226, 0.3),  rgb(255,221,226, 0.2))"
     >
       <Flex align="center">

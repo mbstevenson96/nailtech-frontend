@@ -37,15 +37,17 @@ const getTotalPrice = () => {
     return total + itemPrice * itemQuantity;
   }, 0);
 };
-
+console.log(cart)
   return (
     <Box p={4}>
       <VStack align="flex-start" spacing={4}>
         {cart?.map(item => (
           <Box key={item.id} w="100%">
+            <Text fontWeight="bold">{item.title}</Text>
+            <Text>{item.description}</Text>
             <HStack justify="space-between" align="center">
               <Image
-                src={item.image}
+                src={item.img}
                 alt={item.name}
                 boxSize="100px"
                 objectFit="cover"
@@ -76,11 +78,11 @@ const getTotalPrice = () => {
                       <NumberDecrementStepper />
                     </NumberInputStepper>
                   </NumberInput>
-                    <BsTrash3Fill
-                      size={'50'}
-                      color={'red'}
-                      onClick={() => removeFromCart(item.id)}
-                    />
+                  <BsTrash3Fill
+                    size={'50'}
+                    color={'red'}
+                    onClick={() => removeFromCart(item.id)}
+                  />
                 </HStack>
               </Box>
             </HStack>
@@ -93,9 +95,10 @@ const getTotalPrice = () => {
             Total: ${getTotalPrice()?.toFixed(2)}
           </Text>
           <Button
-            colorScheme="teal"
+            backgroundColor="#e3c4cc"
             mt={4}
             onClick={() => setShowCheckout(true)}
+            border="none"
           >
             Checkout
           </Button>

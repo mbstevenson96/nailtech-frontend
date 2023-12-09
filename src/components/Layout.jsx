@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import Header from '../views/shopper/header/Header.jsx'
+import Header from '../views/shopper/header/Header';
 const Layout = ({ children }) => {
     const [cart, setCart] = useState([]);
 
@@ -14,4 +14,4 @@ const Layout = ({ children }) => {
   );
 };
 
-export default Layout;
+export default Layout

@@ -20,6 +20,7 @@ import Checkout from '../checkout/Checkout';
 function ShoppingCart({cart, setCart}) { // consider using callBack
   const [showCheckout, setShowCheckout] = useState(false);
   const toggleCheckoutModal = () => setShowCheckout(!showCheckout);
+  
   const handleCheckout = e => {
     e.preventDefault();
     toggleCheckoutModal();

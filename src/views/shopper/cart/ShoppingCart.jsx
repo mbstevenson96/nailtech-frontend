@@ -16,8 +16,9 @@ import {
 } from '@chakra-ui/react';
 import { BsTrash3Fill } from 'react-icons/bs';
 import Checkout from '../checkout/Checkout';
+import {useCart} from './CartContext';
 
-function ShoppingCart({cart, setCart}) { // consider using callBack
+function ShoppingCart() { // consider using callBack
   const [showCheckout, setShowCheckout] = useState(false);
   const toggleCheckoutModal = () => setShowCheckout(!showCheckout);
   const handleCheckout = e => {
@@ -28,6 +29,8 @@ function ShoppingCart({cart, setCart}) { // consider using callBack
   const closeCheckout = () => {
     setShowCheckout(false)
   }
+
+  const [cart, setCart] = useCart();
 
 const getTotalPrice = () => {
   return cart?.reduce((total, item) => {

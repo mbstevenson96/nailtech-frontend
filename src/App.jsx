@@ -21,6 +21,8 @@ import Signup from './views/shopper/header/Signup.jsx';
 import ChangePassword from './views/ChangePassword/ChangePassword.jsx';
 import MyProfile from './views/MyProfile/MyProfile.jsx';
 import Header from './views/shopper/header/Header.jsx'
+import { CartProvider } from './shoppingCart/CartContext.jsx'
+import ShoppingCart from './views/shopper/cart/ShoppingCart.jsx'
 
 export default function App() {
   // setting state
@@ -55,7 +57,7 @@ const navigate = useNavigate()
 
 
   return (
-    <>
+    <CartProvider>
     <Routes>
       {/* Shopper Routes */}
       <Route path="/shopper/home" element={<HomeShopper />} />
@@ -93,7 +95,8 @@ const navigate = useNavigate()
         />
 
       </Routes>
-    </>
+      <ShoppingCart />
+    </CartProvider>
 
   );
 }

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Image, Text, Button, Grid } from '@chakra-ui/react';
+import { Box, Image, Text, Button, Grid, Flex } from '@chakra-ui/react';
 import { Link } from 'react-router-dom';
 
 const ProductCard = ({ product, onAddToCart }) => {
@@ -24,16 +24,23 @@ const ProductCard = ({ product, onAddToCart }) => {
       <Text fontSize="lg" fontWeight="bold" mb={4}>
         ${product.price}
       </Text>
-      <Button colorScheme="teal" onClick={() => onAddToCart(product)}>
-        Add to Cart
-      </Button>
-      <Button
-        as={Link}
-        colorScheme="teal"
-        to={`/products/${product.id}`}
-      >
-        View Details
-      </Button>
+      <Flex justifyContent="space-evenly">
+        <Button
+          colorScheme="pink"
+          border="white"
+          width="8vw"
+          onClick={() => onAddToCart(product)}
+        >
+          Add to Cart
+        </Button>
+        <Button
+          as={Link}
+          to={`/products/${product.id}`}
+          width="8vw" // Adjust the size here (e.g., sm for small)
+        >
+          View Details
+        </Button>
+      </Flex>
     </Box>
   );
 };

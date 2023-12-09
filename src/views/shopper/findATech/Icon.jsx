@@ -1,13 +1,20 @@
 import L from 'leaflet';
-import profilePic1 from '../../../assets/profilePic1.jpg.png';
+import Helena from '../../../assets/helenaProfilePic.jpg'
+import Aaron from '../../../assets/aaronProfilePic.jpg'
+import Samantha from '../../../assets/samanthaProfilePic.jpg'
+import Julissa from '../../../assets/julissaProfilePic.jpg'
 import classes from './Icon.module.css'
 
 const iconAnchorPoint = [30, 75]; // Example coordinates, adjust as needed
 const popupAnchorPoint = [0, -75];
-
+const iconImages =
+{
+  helena: Helena,
+  aaron: Aaron
+}
 const iconPerson = new L.Icon({
-  iconUrl: profilePic1,
-  iconRetinaUrl: profilePic1,
+  iconUrl: Helena,
+  iconRetinaUrl: Helena,
   iconAnchor: iconAnchorPoint,
   popupAnchor: popupAnchorPoint,
   shadowUrl: null,

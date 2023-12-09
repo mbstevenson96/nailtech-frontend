@@ -30,6 +30,23 @@ function LandingPage({onAddToCart}) {
     heroImage2,
   ];
 
+  const nailTechsData = [
+    { id: 1, name: 'Tech 1', location: 'Location 1', profile: 'Profile 1',  socialMediaLinks: {
+        instagram: "www.instagram.com/jdNails",
+        facebook: "www.facebook.com/jdNail",
+    },
+    profilePicture: 'https://via.placeholder.com/150',
+    website: 'https://www.jdnails.com',},
+    { id: 2, name: 'Tech 2', location: 'Location 2', profile: 'Profile 2',  socialMediaLinks: {
+        instagram: "www.instagram.com/jdNails",
+        facebook: "www.facebook.com/jdNail",
+    },
+    profilePicture: 'https://via.placeholder.com/150',
+    website: 'https://www.jdnails.com',},
+    
+    // Add more Nail Techs here
+  ];
+
   const products = [
     {
       id: 1,
@@ -52,52 +69,10 @@ function LandingPage({onAddToCart}) {
       price: 39.99,
       quantity: 1,
     },
-    {
-      id: 4,
-      title: 'Awesome Product',
-      description: 'You will love this amazing product!',
-      price: 39.99,
-      quantity: 1,
-    },
-    {
-      id: 5,
-      title: 'Awesome Product',
-      description: 'You will love this amazing product!',
-      price: 39.99,
-      quantity: 1,
-    },
-    {
-      id: 6,
-      title: 'Awesome Product',
-      description: 'You will love this amazing product!',
-      price: 39.99,
-      quantity: 1,
-    },
-    {
-      id: 7,
-      title: 'Awesome Product',
-      description: 'You will love this amazing product!',
-      price: 39.99,
-      quantity: 1,
-    },
-    {
-      id: 8,
-      title: 'Awesome Product',
-      description: 'You will love this amazing product!',
-      price: 39.99,
-      quantity: 1,
-    },
-    {
-      id: 9,
-      title: 'Awesome Product',
-      description: 'You will love this amazing product!',
-      price: 39.99,
-      quantity: 1,
-    },
   ];
 
   return (
-    <Container maxW="60vw" textAlign="center" mt={5}>
+    <Container maxW="80vw" textAlign="center" mt={5}>
       <Flex
         alignItems="flex-start"
         justifyContent="center"
@@ -132,7 +107,9 @@ function LandingPage({onAddToCart}) {
           alignItems="center"
         >
             <GridItem>
+              <Heading>Ready to Ship Sets</Heading>
               <ProductCards products={products} onAddToCart={onAddToCart} />
+              <Button width="10vw" border="none">Shop All</Button>
             </GridItem>
         </Grid>
       </Box>

@@ -105,7 +105,7 @@ console.log(cart)
         </Box>
       </VStack>
       {showCheckout && (
-        <Checkout showCheckout={showCheckout} closeCheckout={closeCheckout} />
+        <Checkout showCheckout={showCheckout} closeCheckout={closeCheckout} totalPrice={getTotalPrice().toFixed(2)} products={cart} />
       )}
     </Box>
   );

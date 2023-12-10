@@ -15,19 +15,21 @@ import {
   Stack,
   Flex,
   Text,
+  Divider,
 } from '@chakra-ui/react';
 import { CartContext } from '../../../shoppingCart/CartContext.jsx';
 import { ChromePicker } from 'react-color';
+import MyThree from '../../../Three.js';
+import Layout from '../../../components/Layout.jsx';
 
 function Customizer() {
   const [nailLength, setNailLength] = useState('');
   const [nailShape, setNailShape] = useState('');
   const [nailColor, setNailColor] = useState('#ff0000');
   const [total, setTotal] = useState(0);
-
   const [isLengthCollapsed, setIsLengthCollapsed] = useState(false);
   const [isShapeCollapsed, setIsShapeCollapsed] = useState(false);
-  const { cart, setCart, removeFromCart, handleQuanityChange } =
+  const { cart, setCart, addToCart, removeFromCart, handleQuanityChange } =
     useContext(CartContext);
   const colorNames = {
     '#ff0000': 'Red',
@@ -100,29 +102,30 @@ function Customizer() {
     '#000000': 'Black',
   };
 
-  // Feel free to further adjust or add more colors to the list as needed
+  const handleAddToCart = () => {
+    // Create an object representing the selected nail customization
+    const selectedItem = {
+      id: Math.random(),
+      title: 'Custom Nail Set', // Title or name of the product
+      description: `Nail Length: ${nailLength}, Nail Shape: ${nailShape}, Nail Color: ${colorNames[nailColor]}`,
+      img: 'placeholder_image_url', // Replace placeholder_image_url with the actual image URL
+      price: 25, // Hardcoded price for this customization
+      quantity: 1, // Initial quantity
+    };
+
+    // Call addToCart function to add the selected item to the shopping cart
+    addToCart(selectedItem);
+  };
 
   const handleNailColorChange = color => {
     setNailColor(color.hex);
   };
 
-  function handleNailLengthChange(label, isChecked) {
-    if (isChecked) {
-      setNailLength(label);
-      setIsLengthCollapsed(true);
-    } else {
-      setNailLength('');
-      setIsLengthCollapsed(false);
-    }
+  function handleNailLengthChange(value) {
+    setNailLength(value);
   }
-  function handleNailShapeChange(label, isChecked) {
-    if (isChecked) {
-      setNailShape(label);
-      setIsShapeCollapsed(true);
-    } else {
-      setNailShape('');
-      setIsShapeCollapsed(false);
-    }
+  function handleNailShapeChange(value) {
+    setNailShape(value)
   }
 
   const handleAddOnsChange = addOn => {
@@ -138,6 +141,7 @@ function Customizer() {
       lines: { type, option },
     });
   };
+  const [selectedTech, setSelectedTech] = useState('');
   const [nailLengthOptions, setNailLengthOptions] = useState([
     { label: 'Natural (no length)', value: 'natural' },
     { label: 'Short', value: 'short' },
@@ -162,55 +166,62 @@ function Customizer() {
     HandPainted: false,
   });
   return (
-    <>
-      <Header />
+    <Layout>
+      {/* <Box>
+        <MyThree />
+      </Box> */}
       <Box p={4} fontFamily="Poppins">
-        <Flex flexDirection="column">
-          <Heading as="h1" mb={4} fontFamily="Poppins">
+        <Flex
+          flexDirection="column"
+          justifyContent="center"
+          alignItems="center"
+        >
+          <Heading as="h1" mb={4} fontFamily="Poppins" color="#B0A08D">
             The Lab
           </Heading>
-          <Text flexWrap="wrap">
-            Build the perfect nail set and we'll notify nearby nail techs of
-            your order. Or search for techs nationwide in our{' '}
-            <Text color="magenta" textDecoration="underline">
-              Tech Locator ↗<Text></Text>
-            </Text>
+          <Text flexWrap="wrap" alignItems="center">
+            Welcome to our Nail Lab! Select the options below to design the
+            perfect nail set and we'll notify nearby nail techs of your order.
+            Or search for techs nationwide in our{' '}
+            <span color="purple" textDecoration="underline">
+              Tech Locator ↗
+            </span>
           </Text>
         </Flex>
-          {/* Section for building the order */}
-          <Grid templateColumns="repeat(2, 1fr)" gap={4}>
-        <GridItem>
-          <FormControl mb={4}>
-            <FormLabel fontWeight="bold">Length</FormLabel>
-            <Select
-              placeholder="Select nail length"
-              onChange={e => handleNailLengthChange(e.target.value)}
-              value={nailLength}
-            >
-              {nailLengthOptions.map(option => (
-                <option key={option.value} value={option.value}>
-                  {option.label}
-                </option>
-              ))}
-            </Select>
-          </FormControl>
-        </GridItem>
-        <GridItem>
-          <FormControl mb={4}>
-            <FormLabel fontWeight="bold">Shape</FormLabel>
-            <Select
-              placeholder="Select nail shape"
-              onChange={e => handleNailShapeChange(e.target.value)}
-              value={nailShape}
-            >
-              {nailShapeOptions.map(option => (
-                <option key={option.value} value={option.value}>
-                  {option.label}
-                </option>
-              ))}
-            </Select>
-          </FormControl>
-        </GridItem>
+        {/* Section for building the order */}
+        <Grid templateColumns="repeat(2, 1fr)" gap={4}>
+          <GridItem>
+            <FormControl mb={4}>
+              <FormLabel fontWeight="bold">Length</FormLabel>
+              <Select
+                placeholder="Select nail length"
+                onChange={e => handleNailLengthChange(e.target.value)}
+                value={nailLength}
+              >
+                {nailLengthOptions.map(option => (
+                  <option key={option.value} value={option.value}>
+                    {option.label}
+                  </option>
+                ))}
+              </Select>
+            </FormControl>
+          </GridItem>
+          <GridItem>
+            <FormControl mb={4}>
+              <FormLabel fontWeight="bold">Shape</FormLabel>
+              <Select
+                placeholder="Select nail shape"
+                onChange={e => handleNailShapeChange(e.target.value)}
+                value={nailShape}
+              >
+                {nailShapeOptions.map(option => (
+                  <option key={option.value} value={option.value}>
+                    {option.label}
+                  </option>
+                ))}
+              </Select>
+            </FormControl>
+          </GridItem>
           <GridItem>
             <FormControl mb={4}>
               <FormLabel
@@ -232,8 +243,8 @@ function Customizer() {
                 ))}
               </Stack>
             </FormControl>
-            </GridItem>
-            <GridItem>
+          </GridItem>
+          <GridItem>
             <FormControl mb={4}>
               <FormLabel fontWeight="bold">Color</FormLabel>
               <ChromePicker
@@ -242,7 +253,8 @@ function Customizer() {
               />
             </FormControl>
           </GridItem>
-
+          <Divider />
+          <Divider />
           <GridItem>
             <Box>
               <Heading as="h2" size="md" mb={4}>
@@ -251,6 +263,8 @@ function Customizer() {
               <p>Nail Length: {nailLength}</p>
               <p>Nail Shape: {nailShape}</p>
               <p>Nail Color: {colorNames[nailColor]}</p>
+              {/* <p>Nail Tech: {selectedTech}</p> */}
+              <p>Price: $25</p> {/* Hardcoded price */}
             </Box>
             <Box mt={4}>
               <Button
@@ -258,6 +272,7 @@ function Customizer() {
                 border="none"
                 size="md"
                 width="8vw"
+                onClick={handleAddToCart}
               >
                 Add to Cart
               </Button>
@@ -265,7 +280,7 @@ function Customizer() {
           </GridItem>
         </Grid>
       </Box>
-    </>
+    </Layout>
   );
 }
 

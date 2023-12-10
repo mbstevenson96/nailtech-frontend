@@ -15,17 +15,18 @@ import {
   ModalCloseButton,
   Image,
   Container,
+  VStack,
 } from '@chakra-ui/react';
 import Map from './Map';
 import Layout from '../../../components/Layout';
 import Helen from '../../../assets/helenaProfilePic.jpg';
 import Aaron from '../../../assets/aaronProfilePic.jpg';
 import Samantha from '../../../assets/samanthaProfilePic.jpg';
-import Julissa from '../../../assets/julissaProfilePic.jpg'
-import Elena from '../../../assets/elenaProfilePic.jpg'
-import Sierra from '../../../assets/sierraProfilePic.jpg'
-import Jena from '../../../assets/jenaProfilePic.jpg'
-import Evan from '../../../assets/evanProfilePic.jpg'
+import Julissa from '../../../assets/julissaProfilePic.jpg';
+import Elena from '../../../assets/elenaProfilePic.jpg';
+import Sierra from '../../../assets/sierraProfilePic.jpg';
+import Jena from '../../../assets/jenaProfilePic.jpg';
+import Evan from '../../../assets/evanProfilePic.jpg';
 
 // Sample Nail Techs data (replace with your data)
 const nailTechsData = [
@@ -34,22 +35,37 @@ const nailTechsData = [
     name: 'Sierra Tamar',
     location: 'Location 1',
     profile: 'Profile 1',
-    description: '4 years of experience',
+    experience: '4 years of experience',
     profilePicture: Sierra,
     zipCode: 43224,
+    description:
+      'I love what I do! I have been a professional nail tech for 4 years and my work has already been showcased in numerous magazines. I am committed to professional and excellent service.',
     coordinates: { lat: 40.04360098648579, lon: -82.95895974417773 },
+    reviews: [
+      {
+        reviewer: 'Client A',
+        comment: 'Great service! Highly recommended.',
+        rating: 5, // Rating out of 5 stars
+      },
+      {
+        reviewer: 'Client B',
+        comment: 'Amazing work and attention to detail.',
+        rating: 4,
+      },
+    ],
   },
   {
     id: 2,
     name: 'Jena Boukkari',
     location: 'Location 2',
     profile: 'Profile 2',
-    description: '7 years of experience',
+    experience: '7 years of experience',
     socialMediaLinks: {
       instagram: 'www.instagram.com/jdNails',
       facebook: 'www.facebook.com/jdNail',
     },
     profilePicture: Jena,
+    description: '',
     website: 'https://www.jdnails.com',
     zipCode: 43215,
     coordinates: { lat: 39.96712322804097, lon: -83.00184380349856 },
@@ -59,12 +75,13 @@ const nailTechsData = [
     name: 'Samantha Sosa',
     location: 'Location 2',
     profile: 'Profile 2',
-    description: '10 years of experience',
+    experience: '1 year of experience',
     socialMediaLinks: {
       instagram: 'www.instagram.com/jdNails',
       facebook: 'www.facebook.com/jdNail',
     },
     profilePicture: Samantha,
+    description: '',
     website: 'https://www.jdnails.com',
     zipCode: 43085,
     coordinates: { lat: 40.259736498718034, lon: -83.21659510786779 },
@@ -78,7 +95,8 @@ const nailTechsData = [
       instagram: 'www.instagram.com/jdNails',
       facebook: 'www.facebook.com/jdNail',
     },
-    description: '8 years of experience',
+    experience: '8 years of experience',
+    description: 'I',
     profilePicture: Aaron,
     website: 'https://www.jdnails.com',
     zipCode: 43227,
@@ -93,8 +111,10 @@ const nailTechsData = [
       instagram: 'www.instagram.com/jdNails',
       facebook: 'www.facebook.com/jdNail',
     },
-    description: '8 years of experience',
     profilePicture: Elena,
+    experience: '6 years of experience',
+    description:
+      'I have been doing nails professionally for 6 years. I specialize in short, simple/neutral sets.',
     website: 'https://www.jdnails.com',
     zipCode: 43227,
     coordinates: { lat: 39.04360098648579, lon: -80.95895974417773 },
@@ -116,13 +136,15 @@ const ProfileCard = ({ tech, openModal }) => {
       <Heading as="h4" fontSize="1.8vh" size="md" mb="2" textAlign="center">
         {tech.name}
       </Heading>
-      <Text margin="0.4rem">{tech.description}</Text>
+      <Text margin="0.4rem">{tech.experience}</Text>
       <Flex justifyContent="center" alignItems="center" mb="2">
         <Image
-          width="245px"
-          height="250px"
-          color="gray.600"
           src={tech.profilePicture}
+          alt={tech.name}
+          h="230px"
+          width="200px"
+          objectFit="cover"
+          mb={4}
         />
       </Flex>
       <Button
@@ -144,34 +166,33 @@ const FindATech = () => {
   const [filteredTechs, setFilteredTechs] = useState(nailTechsData);
   const [isSearchingByZipCode, setIsSearchingByZipCode] = useState(false);
 
-   const handleSearch = () => {
-     const filtered = nailTechsData.filter(
-       tech =>
-         tech.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-         tech.location.toLowerCase().includes(searchTerm.toLowerCase()),
-     );
-     setFilteredTechs(filtered);
-     setIsSearchingByZipCode(/\d/.test(searchTerm));
-   };
+  const handleSearch = () => {
+    const filtered = nailTechsData.filter(
+      tech =>
+        tech.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        tech.location.toLowerCase().includes(searchTerm.toLowerCase()),
+    );
+    setFilteredTechs(filtered);
+    setIsSearchingByZipCode(/\d/.test(searchTerm));
+  };
 
-   const handleSearchTypeToggle = () => {
-     setIsSearchingByZipCode(prevState => !prevState);
-     setSearchTerm('');
-   };
+  const handleSearchTypeToggle = () => {
+    setIsSearchingByZipCode(prevState => !prevState);
+    setSearchTerm('');
+  };
 
-   const handleInputChange = event => {
-     setSearchTerm(event.target.value); // Update search term as the user types
-     const filtered = nailTechsData.filter(
-       tech =>
-         tech.name.toLowerCase().includes(event.target.value.toLowerCase()) ||
-         tech.zipCode
-           .toString()
-           .toLowerCase()
-           .includes(event.target.value.toLowerCase()),
-     );
-     setFilteredTechs(filtered);
-   };
-
+  const handleInputChange = event => {
+    setSearchTerm(event.target.value); // Update search term as the user types
+    const filtered = nailTechsData.filter(
+      tech =>
+        tech.name.toLowerCase().includes(event.target.value.toLowerCase()) ||
+        tech.zipCode
+          .toString()
+          .toLowerCase()
+          .includes(event.target.value.toLowerCase()),
+    );
+    setFilteredTechs(filtered);
+  };
 
   const openModal = tech => {
     setSelectedTech(tech);
@@ -180,6 +201,22 @@ const FindATech = () => {
   const closeModal = () => {
     setSelectedTech(null);
   };
+   const renderReviewStars = rating => {
+     const stars = [];
+     for (let i = 1; i <= 5; i++) {
+       stars.push(
+         <span
+           key={i}
+           role="img"
+           aria-label={i <= rating ? 'star' : 'empty-star'}
+         >
+           {i <= rating ? '⭐' : '☆'}
+         </span>,
+       );
+     }
+     return stars;
+   };
+
 
   return (
     <Layout>
@@ -232,11 +269,38 @@ const FindATech = () => {
       <Modal isOpen={selectedTech !== null} onClose={closeModal} size="lg">
         <ModalOverlay />
         <ModalContent>
+          {' '}
           <ModalHeader>{selectedTech?.name}</ModalHeader>
+          <Flex margin="2rem">
+            <Image
+              src={selectedTech?.profilePicture}
+              h="240px"
+              width="200px"
+              objectFit="cover"
+              mb={4}
+            />
+            <VStack>
+              <Text m={3}>{selectedTech?.description}</Text>
+              <Text color="blue.500" cursor="pointer" onClick={() => {}}>
+                Make {selectedTech?.name} your nail tech
+              </Text>
+            </VStack>
+            <Text></Text>
+          </Flex>
           <ModalCloseButton />
           <ModalBody>
-            <Text>{selectedTech?.profile}</Text>
-          </ModalBody>
+            {selectedTech?.reviews?.map((review, index) => (
+              <Box key={index} mb={3}>
+                <Flex alignItems="center">
+                  <Text fontWeight="bold" mr={2}>
+                    {review.reviewer}:
+                  </Text>
+                  <Box>{renderReviewStars(review.rating)}</Box>
+                </Flex>
+                <Text>{review.comment}</Text>
+              </Box>
+            ))}
+          </ModalBody>{' '}
         </ModalContent>
       </Modal>
       <Map searchTerm={searchTerm} profiles={filteredTechs} />

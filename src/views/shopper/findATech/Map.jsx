@@ -66,7 +66,7 @@ const UserProfilesMap = ({searchTerm, profiles}) => {
                 iconUrl: profile.profilePicture,
                 iconRetinaUrl: profile.profilePicture,
                 iconAnchor: [profile.coordinates.lat, profile.coordinates.lon],
-                popupAnchor: [0, -75],
+                popupAnchor: [0, 45],
                 shadowUrl: null,
                 shadowSize: null,
                 shadowAnchor: null,

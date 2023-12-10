@@ -35,6 +35,7 @@ const Header = ({  user, handleLogout }) => {
       p={4}
       fontFamily="Poppins"
       background="linear-gradient(135deg, rgb(255,221,226, 0.3),  rgb(255,221,226, 0.2))"
+      padding="2rem"
     >
       <Flex align="center">
         <ChakraLink
